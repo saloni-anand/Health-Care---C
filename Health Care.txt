@@ -1,0 +1,284 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<string.h>
+int date,mon;
+char pur;
+int main()
+{
+int option,ex;
+char name[40];
+printf("Please enter your name: ");
+gets(name);
+char age1[40];
+printf("Please enter your age: ");
+gets(age1);
+char med[40];
+printf("Please enter your medical background: ");
+gets(med);
+char otherdetails[40];
+printf("Please enter your other details: ");
+gets(otherdetails);
+while (ex==0)
+{ printf("\nEnter option:\n1)Finding out insurance premium\n2)Checking heartbeat\n3)Setting
+reminder\n4)Checking reminder\n5)Symptoms\n6)Number of steps\n7)Sleep\n8)Pressure\n9)Hospital\n10)Exit");
+printf("\nEnter option:");
+scanf("%d",&option);
+switch(option)
+{ case 1:premium();
+break;
+case 2:heartbeat();
+break;
+case 3:remset();
+break;
+case 4:remcheck();
+break;
+case 5:symps();
+break;
+case 6:stepss();
+break;
+case 7:sleep();
+break;
+case 8:press();
+break;
+case 9:hospital();
+break;
+case 10:ex++;
+break;
+default: printf("\nInvalid Choice!!");
+break;
+} }
+return 0;
+}
+void premium()
+{
+//get the details of the user to determine premium
+int age,mamt,pre;
+char tob[10],alc[10];
+printf("Enter the age of the user:");
+scanf("%d",&age);
+printf("Do you consume tobacco?");
+scanf("%s",&tob);
+printf("Do you consume alcohol?");
+scanf("%s",&alc);
+printf("What maturity amount do you require?");
+scanf("%d",&mamt);
+if (age>=18 && age<=28)
+{
+if (strcmp(tob,"no") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.005*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.006*mamt;
+}
+else if(strcmp(tob,"no") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.006*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.007*mamt;
+} }
+else if (age>28 && age<=38)
+{
+if (strcmp(tob,"no") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.006*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.007*mamt;
+}
+else if(strcmp(tob,"no") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.007*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.008*mamt;
+} }
+else if (age>38 && age<=48)
+{
+if (strcmp(tob,"no") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.007*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.008*mamt;
+}
+else if(strcmp(tob,"no") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.008*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.009*mamt;
+}
+}
+else if (age>48 && age<=68)
+{
+if (strcmp(tob,"no") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.008*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"no") == 0)
+{
+pre=0.009*mamt;
+}
+else if(strcmp(tob,"no") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.009*mamt;
+}
+else if (strcmp(tob,"yes") == 0 && strcmp(alc,"yes") == 0)
+{
+pre=0.01*mamt;
+}
+}
+printf("The premium amount is %d",pre);
+}
+int heartbeat()
+{
+//getting heartbeat from user to detect abnormalities
+int hbeat;
+printf("\nEnter heartbeat of the patient:");
+scanf("%d",&hbeat);
+if (60<hbeat && hbeat<100)
+{
+printf("\nNormal\n");
+}
+else
+{
+printf("\nAbnormal!!\n");
+}
+return 0;
+}
+int remset()
+{
+//reminders
+printf("\nEnter date for reminder:");
+scanf("%d",&date);
+printf("\nEnter month for reminder:");
+scanf("%d",&mon);
+printf("\nWhat is the reminder for?");
+scanf("%s",&pur);
+}
+int remcheck()
+{
+//checking for reminder
+/*int date1,mon1;
+printf("\nEnter date:");
+scanf("%d",&date1);
+printf("\nEnter month:");
+scanf("%d",&mon1);
+if (date==date1 && mon==mon1)
+{
+printf("\nYou set a reminder for %s",pur);
+}
+return 1;*/
+printf("you have set the alarm for %d-%d date\n",date,mon);
+printf("purpose of alarm is %s ",pur);
+}
+int symps()
+{
+//symptoms
+printf("Here are the following symptoms: \n");
+printf("1. arm pain, 2. chest pain, 3. jaw pain, 4. dizziness\n 5. fatigue, 6. light headedness, 7. clammy skin, 8.
+clammy skin\n9. cold sweat, 10. heartburn, 11. indigestion, 12. nausea\n13. vomiting, 14. neck discomfort, 15. arm
+discomfort, 16. anxiety");
+int n;
+int syms;
+printf("\nEnter number of symptoms from above: ");
+scanf("%d",&n);
+if (n>=3)
+{
+printf("\nThe patient might be having a heart attack!!");
+}
+else
+{
+printf("\nThe patient is normal, no worries! ");
+}
+return 0;
+}
+int stepss()
+{
+//number of steps
+int steps;
+printf("\nEnter number of steps walked:");
+scanf("%d",&steps);
+int sreq;
+sreq=10000-steps;
+int calo;
+calo=steps*0.05;
+printf("\nYou have burnt %d calories today",calo);
+printf("\nYou need to walk %d more steps",sreq);
+return 0;
+}
+int sleep()
+{
+//sleep
+int hour,min,hour1,min1,time,time1,time2,time3;
+printf("Enter hour when you started sleeping:");
+scanf("%d",&hour);
+printf("Enter minute when you started sleeping:");
+scanf("%d",&min);
+printf("Enter hour which till you slept:");
+scanf("%d",&hour1);
+printf("Enter min which till you slept:");
+scanf("%d",&min1);
+time=(60-min)+ ((hour1-hour)/60)+min1;
+time1=480-time;
+time2=(time1/60);
+time3=time1%60;
+printf("You need %d hours and %d minutes of sleep",time2,time3);
+return 0;
+}
+int press()
+{
+//pressure
+int pres;
+printf("\nEnter the pressure input from the sensors: " );
+scanf("%d",&pres);
+if (pres>10)
+{
+printf("Needs medical assistance");
+}
+else
+{
+printf("Everything is fine");
+}
+return 0;
+}
+int hospital()
+{
+//hospital
+int x,y,x1,y1,x2,y2,x3,y3,dist1,dist2;
+printf("Enter x coordinates of patient:");
+scanf("%d",&x);
+printf("Enter y coordinates of patient:");
+scanf("%d",&y);
+printf("Enter x coordinates of hospital 1:");
+scanf("%d",&x1);
+printf("Enter y coordinates of hospital 1:");
+scanf("%d",&y1);
+printf("Enter x coordinates of hospital 2:");
+scanf("%d",&x2);
+printf("Enter y coordinates of hospital 2:");
+scanf("%d",&y2);
+printf("Enter x coordinates of hospital 2:");
+scanf("%d",&x3);
+printf("Enter y coordinates of hospital 2:");
+scanf("%d",&y3);
+dist1=pow((pow((x-x1), 2)+pow((y-y1),2)),(1/2));
+dist2=pow((pow((x-x2),2)+pow((y-y2),2)),(1/2));
+if (dist1>dist2)
+{
+printf("Nearest distance is hospital 1, contact");
+}
+else
+{
+printf("Nearest distance is hospital 2, contact");
+}
+return 0;}
